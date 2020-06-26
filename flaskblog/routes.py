@@ -1,13 +1,7 @@
-from flask import Flask, render_template, url_for, flash, redirect
-from forms import RegistrationForm, LoginForm
-
-app = Flask(__name__)
-'''
-    # Generate a secret easily (IDLE can be used)
-    import secrets
-    secrets.token_hex(16) 
-'''
-app.config['SECRET_KEY'] = '30e8a8f03e6df34c9f76837290d89e1b'
+from flask import render_template, url_for, flash, redirect
+from flaskblog import app
+from flaskblog.forms import RegistrationForm, LoginForm
+from flaskblog.models import User, Post
 
 posts = [
     {
@@ -57,7 +51,3 @@ def login():
             flash('Login unsuccessful. Please check username and password', 'danger')
 
     return render_template('login.html', title='Login', form=form)
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
